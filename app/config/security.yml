@@ -1,0 +1,16 @@
+security:
+    firewalls:
+        secured_area:
+            pattern:   ^/
+            anonymous: ~
+            form_login: ~
+
+    providers:
+        main:
+            entity: { class: Highscore\StoreBundle\Entity\User, property: login }
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+    encoders:
+        Highscore\StoreBundle\Entity\User: plaintext

@@ -1,0 +1,78 @@
+{# Terrific/CoreBundle/Resources/views/base.html.twig #}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<title>{% block title %}Terrific Composer{% endblock %}</title>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	<meta name="viewport" content="width=device-width">
+
+    {% block headjs %}{% endblock %}
+	{% block meta %}{% endblock %}
+
+    {# stylesheets #}
+	{% block styles %}
+        {% stylesheets
+        '@TerrificComposition/Resources/public/css/libraries/*.css'
+        '@TerrificComposition/Resources/public/css/libraries/*.less'
+        '@TerrificComposition/Resources/public/css/plugins/*.css'
+        '@TerrificComposition/Resources/public/css/plugins/*.less'
+        '@TerrificComposition/Resources/public/css/default.less'
+        '@TerrificComposition/Resources/public/css/elements.less'
+        '../src/Terrific/Module/*/Resources/public/css/*.less'
+        '../src/Terrific/Module/*/Resources/public/css/skin/*.less'
+        '../src/Terrific/Module/*/Resources/public/css/*.css'
+        '../src/Terrific/Module/*/Resources/public/css/skin/*.css'
+        output="css/compiled/default.css"
+        %}
+
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+	{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+{# the content goes here #}
+{% block composition %}{% endblock %}
+
+{# javascripts #}
+{% block jquery %}
+	{% javascripts
+		'@TerrificCoreBundle/Resources/public/js/jquery-1.7.2.min.js'
+		output='js/compiled/jquery-1.7.2.min.js'
+	%}
+		<script src="{{ asset_url }}" type="text/javascript"></script>
+	{% endjavascripts %}
+{% endblock %}
+
+{% block scripts %}
+	{% javascripts
+			'@TerrificCoreBundle/Resources/public/js/terrific-2.0.0.min.js'
+			'@TerrificComposition/Resources/public/js/configs/*.js'
+	        '@TerrificComposition/Resources/public/js/libraries/*.js'
+	        '@TerrificComposition/Resources/public/js/plugins/*.js'
+	        '@TerrificComposition/Resources/public/js/utils/*.js'
+	        '../src/Terrific/Module/*/Resources/public/js/*.js'
+	        '../src/Terrific/Module/*/Resources/public/js/skin/*.js'
+	        output='js/compiled/default.js'
+	    %}
+		<script src="{{ asset_url }}" type="text/javascript"></script>
+	{% endjavascripts %}
+{% endblock %}
+
+
+{# terrificjs bootstrap #}
+{% block bootstrap %}
+	<script type="text/javascript">
+		(function($) {
+			$(document).ready(function() {
+				var $page = $('body'),
+				application = new Tc.Application();
+				application.registerModules($page);
+				application.start();
+			});
+		})(Tc.$);
+	</script>
+{% endblock %}
+</body>
+</html>

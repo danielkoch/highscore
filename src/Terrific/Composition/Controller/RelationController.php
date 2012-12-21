@@ -19,15 +19,13 @@ namespace Terrific\Composition\Controller {
     /**
      *
      */
-    class RelationController extends Controller
-    {
+    class RelationController extends Controller {
 
         /**
          * @param $id
          * @return mixed
          */
-        protected function getRelation($id, $buildNew = false)
-        {
+        protected function getRelation($id, $buildNew = false) {
             $relation = $this->getDoctrine()->getEntityManager()->find('Highscore\StoreBundle\Entity\Relation', $id);
 
             if ($relation === null && $buildNew) {
@@ -39,12 +37,21 @@ namespace Terrific\Composition\Controller {
 
 
         /**
+         * @Route("/relation/list", name="relation_list")
+         * @Template()
+         */
+        public function listAction() {
+            $relationList = $this->getDoctrine()->getManager()->getRepository('Highscore\StoreBundle\Entity\Relation')->findAll();
+
+            return array("relations" => $relationList);
+        }
+
+        /**
          * @Composer("Relation")
          * @Route("/relation/{id}", name="relation_show")
          * @Template()
          */
-        public function indexAction($id)
-        {
+        public function indexAction($id) {
             return array('relation' => $this->getRelation($id));
         }
 
@@ -53,13 +60,10 @@ namespace Terrific\Composition\Controller {
          * @Route("/relation/edit/{id}", name="relation_edit")
          * @Template()
          */
-        public function editAction($id, Request $request)
-        {
+        public function editAction($id, Request $request) {
             $relation = $this->getRelation($id, true);
 
-            $form = $this->createFormBuilder($relation)
-                ->add('name', 'text')
-                ->getForm();
+            $form = $this->createFormBuilder($relation)->add('name', 'text')->getForm();
 
 
             if ($request->getMethod() == 'POST') {
@@ -70,14 +74,13 @@ namespace Terrific\Composition\Controller {
                     $this->getDoctrine()->getEntityManager()->flush();
 
                     return $this->redirect($this->generateUrl("relation_edit", array(
-                        "id" => $id
-                    )));
+                                                                                    "id" => $id
+                                                                               )));
                 }
             }
 
             return array(
-                'form' => $form->createView(),
-                'id' => $id
+                'form' => $form->createView(), 'id' => $id
             );
         }
     }

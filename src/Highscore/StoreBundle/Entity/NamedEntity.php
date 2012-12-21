@@ -15,7 +15,7 @@ namespace Highscore\StoreBundle\Entity {
     abstract class NamedEntity extends BaseEntity
     {
         /**
-         * @ORM\Column(type="string", length="255")
+         * @ORM\Column(type="string", length=255)
          */
         protected $name;
 

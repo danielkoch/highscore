@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>user.delete.result.success</source>
+                <target>Benutzer &lt;b&gt;'%login%'&lt;/b&gt; wurde erfolgreich gelöscht.</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>user.delete.result.error</source>
+                <target>Benutzer &lt;b&gt;'%login%'&lt;/b&gt; konnte nicht gelöscht werden.</target>
+            </trans-unit>
+
+            <!--
+            <trans-unit id="">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            -->
+        </body>
+    </file>
+</xliff>

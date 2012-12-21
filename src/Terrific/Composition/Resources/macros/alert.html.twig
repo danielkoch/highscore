@@ -1,0 +1,13 @@
+{% macro msgbox(msg, data, count) %}
+
+    {% if count|default(-1) == 1 %}
+        <div class="alert alert-success">
+            <p>{{ msg|trans(data)|raw }}</p>
+        </div>
+    {% elseif count|default(-1) == 0 %}
+        <div class="alert alert-error">
+            <p>{{ msg|trans(data)|raw }}</p>
+        </div>
+    {% endif %}
+
+{% endmacro %}

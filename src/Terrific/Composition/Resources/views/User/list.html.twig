@@ -1,0 +1,37 @@
+{% extends 'TerrificComposition::base.html.twig' %}
+
+{% block title %}Highscore - Userlist{% endblock %}
+
+{% block body %}
+    <h1>Benutzerliste</h1>
+
+    {% if result|default(null) != null %}
+        {{ alert.msgbox(result.message, result.data, result.count) }}
+    {% endif %}
+
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>#</th>
+            <th>Login</th>
+            <th>Vorname</th>
+            <th>Nachname</th>
+            <th>Aktion</th>
+        </tr>
+
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.login }}</td>
+            <td>{{ user.firstname }}</td>
+            <td>{{ user.lastname }}</td>
+            <td>
+                <a href="{{ path('user_edit', {'id': user.id}) }}">Bearbeiten</a>
+                <span>&nbsp;|&nbsp;</span>
+                <a href="{{ path('user_delete', {'id': user.id}) }}">Löschen</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

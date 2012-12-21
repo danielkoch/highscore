@@ -1,18 +1,17 @@
 imports:
     - { resource: parameters.ini }
+    - { resource: security.yml }
 
 # Symfony Configuration
 framework:
     secret:          %secret%
-    charset:         UTF-8
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] }
-    session:
-        default_locale: %locale%
-        auto_start:     true
+    session:          ~
+    translator:      { fallback: de}
 
 # Twig Configuration
 twig:
@@ -25,10 +24,10 @@ assetic:
     use_controller: false
     filters:
         terrificrewrite:
-            resource: %kernel.root_dir%/../vendor/bundles/Terrific/CoreBundle/Resources/config/terrificrewrite.xml
+            resource: %kernel.root_dir%/../vendor/brunschgi/terrific-core-bundle/Terrific/CoreBundle/Resources/config/terrificrewrite.xml
         lessphp:
             apply_to: "\.less$"
-            file: %kernel.root_dir%/../vendor/lessphp/lessc.inc.php
+            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
 
 terrific_composer:
    composition_bundles: [@TerrificComposition]

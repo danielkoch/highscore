@@ -14,20 +14,19 @@ namespace Terrific\Composition\Controller {
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
     use Symfony\Component\HttpFoundation\Request;
     use Doctrine\ORM\EntityManager;
+    use JMS\SecurityExtraBundle\Annotation\Secure;
 
 
     /**
      *
      */
-    class UserController extends Controller
-    {
+    class UserController extends Controller {
 
         /**
          * @param $id
-         * @return mixed
+         * @return \Highscore\StoreBundle\Entity\User
          */
-        protected function getUser($id, $buildNew = false)
-        {
+        protected function getDbUser($id, $buildNew = false) {
             $user = $this->getDoctrine()->getEntityManager()->find('Highscore\StoreBundle\Entity\User', $id);
 
             if ($user === null && $buildNew) {
@@ -37,33 +36,54 @@ namespace Terrific\Composition\Controller {
             return $user;
         }
 
-
         /**
-         * @Composer("User")
-         * @Route("/user/{id}", name="user_show")
+         * @Route("/user/list", name="user_list")
          * @Template()
          */
-        public function indexAction($id)
-        {
-            return array('user' => $this->getUser($id));
+        public function listAction() {
+            $qry = $this->getDoctrine()->getManager()->createQuery('SELECT U FROM Highscore\StoreBundle\Entity\User U');
+            $userList = $qry->getResult();
+
+            return array("users" => $userList);
         }
 
         /**
-         * @Composer("User")
+         * @Route("/user/{id}", name="user_show")
+         * @Template()
+         */
+        public function indexAction($id) {
+            return array('user' => $this->getDbUser($id));
+        }
+
+        /**
+         * @Route("/user/del/{id}", name="user_delete")
+         */
+        public function delAction($id, Request $request) {
+            $user = $this->getDbUser($id);
+
+            $this->getDoctrine()->getManager()->remove($user);
+            $this->getDoctrine()->getManager()->flush();
+
+            $count = ($user->getId() == null ? 1 : 0);
+            $result["count"] = $count;
+            $result["message"] = ($count == 1 ? 'user.delete.result.success' : 'user.delete.result.error');
+            $result["data"] = array("%login%" => $user->getLogin());
+
+            $params = array('result' => $result);
+            $params = array_merge($params, $this->listAction());
+
+            return $this->render("TerrificComposition:User:list.html.twig", $params);
+        }
+
+        /**
+         * @Secure(roles="ROLE_USER")
          * @Route("/user/edit/{id}", name="user_edit")
          * @Template()
          */
-        public function editAction($id, Request $request)
-        {
-            $user = $this->getUser($id, true);
+        public function editAction($id, Request $request) {
+            $user = $this->getDbUser($id, true);
 
-            $form = $this->createFormBuilder($user)
-                ->add('login', 'text')
-                ->add('firstname', 'text')
-                ->add('lastname', 'text')
-                ->add('email', 'email')
-                ->add('password', 'password')
-                ->getForm();
+            $form = $this->createFormBuilder($user)->add('login', 'text')->add('firstname', 'text')->add('lastname', 'text')->add('email', 'email')->add('password', 'password')->getForm();
 
 
             if ($request->getMethod() == 'POST') {
@@ -73,15 +93,12 @@ namespace Terrific\Composition\Controller {
                     $this->getDoctrine()->getEntityManager()->persist($user);
                     $this->getDoctrine()->getEntityManager()->flush();
 
-                    return $this->redirect($this->generateUrl("user_edit", array(
-                        "id" => $id
-                    )));
+                    return $this->redirect($this->generateUrl("user_list"));
                 }
             }
 
             return array(
-                'form' => $form->createView(),
-                'id' => $id
+                'form' => $form->createView(), 'id' => $id
             );
         }
     }

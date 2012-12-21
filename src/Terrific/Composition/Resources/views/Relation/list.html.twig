@@ -1,0 +1,21 @@
+{% extends 'TerrificComposition::base.html.twig' %}
+
+{% block title %}Highscore - Userlist{% endblock %}
+
+{% block body %}
+    <h1>Verbindungen</h1>
+
+    {% if result|default(null) != null %}
+        {{ alert.msgbox(result.message, result.data, result.count) }}
+    {% endif %}
+
+    <table class="table table-hover table-striped">
+        {% for relation in relations %}
+            <tr>
+                <td>{{ relation.id }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}
