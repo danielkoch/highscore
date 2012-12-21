@@ -2,12 +2,6 @@ Highscore
 ========================
 Playful tool to plan a better web application quality
 
-
-
-Frontend Highscore ggf. auch allgemeiner als WebApp Highscore (wah.io, webapp-highscore.xyz) oder ganz allgemein gehalten: highscore.io > Frontend, Backend, ... als Bundle
-==================
-
-
 What's inside?
 ---------------
 The Symfony Standard Edition comes pre-configured with the following bundles:
