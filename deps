@@ -1,0 +1,83 @@
+[TerrificCoreBundle]
+    git=https://github.com/brunschgi/TerrificCoreBundle.git
+    target=/bundles/Terrific/CoreBundle
+
+[TerrificComposerBundle]
+    git=https://github.com/brunschgi/TerrificComposerBundle.git
+    target=/bundles/Terrific/ComposerBundle
+
+[cssmin]
+    git=https://github.com/brunschgi/cssmin.git
+    target=/cssmin
+
+[jsmin]
+    git=https://github.com/mrclay/jsmin_minify.git
+    target=/jsmin
+
+[lessphp]
+    git=https://github.com/leafo/lessphp.git
+    target=/lessphp
+
+[symfony]
+    git=http://github.com/symfony/symfony.git
+    version=v2.0.13
+
+[twig]
+    git=http://github.com/fabpot/Twig.git
+    version=v1.7.0
+
+[monolog]
+    git=http://github.com/Seldaek/monolog.git
+    version=1.0.2
+
+[doctrine-common]
+    git=http://github.com/doctrine/common.git
+    version=2.1.4
+
+[assetic]
+    git=http://github.com/kriswallsmith/assetic.git
+    version=v1.0.3
+
+[SensioFrameworkExtraBundle]
+    git=http://github.com/sensio/SensioFrameworkExtraBundle.git
+    target=/bundles/Sensio/Bundle/FrameworkExtraBundle
+    version=origin/2.0
+
+[SensioDistributionBundle]
+     git=http://github.com/sensio/SensioDistributionBundle.git
+     target=/bundles/Sensio/Bundle/DistributionBundle
+     version=origin/2.0
+
+[AsseticBundle]
+    git=http://github.com/symfony/AsseticBundle.git
+    target=/bundles/Symfony/Bundle/AsseticBundle
+    version=v1.0.1
+
+[doctrine-dbal]
+    git=http://github.com/doctrine/dbal.git
+    version=2.1.6
+
+[doctrine]
+    git=http://github.com/doctrine/doctrine2.git
+    version=2.1.6
+
+[twig-extensions]
+    git=http://github.com/fabpot/Twig-extensions.git
+
+[SensioGeneratorBundle]
+    git=http://github.com/sensio/SensioGeneratorBundle.git
+    target=/bundles/Sensio/Bundle/GeneratorBundle
+    version=origin/2.0
+
+[metadata]
+    git=http://github.com/schmittjoh/metadata.git
+    version=1.0.0
+
+[swiftmailer]
+    git=http://github.com/swiftmailer/swiftmailer.git
+    version=v4.1.5
+
+[JMSSecurityExtraBundle]
+    git=http://github.com/schmittjoh/JMSSecurityExtraBundle.git
+    target=/bundles/JMS/SecurityExtraBundle
+    version=origin/1.0.x

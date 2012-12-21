@@ -1,0 +1,13 @@
+{% extends 'TerrificComposition::base.html.twig' %}
+
+{% block title %}Highscore - User - {% endblock %}
+
+{% block body %}
+
+        {% if user %}
+            {{ user.getId() }}
+        {% else %}
+            No User with Id found
+        {% endif %}
+
+{% endblock %}

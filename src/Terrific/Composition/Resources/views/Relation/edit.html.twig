@@ -1,0 +1,14 @@
+{% extends 'TerrificComposition::base.html.twig' %}
+
+{% block title %}Highscore - User - {% endblock %}
+
+{% block body %}
+
+<form action="{{ path('relation_edit', {'id' : id }) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+
+    <input type="submit"/>
+</form>
+
+{% endblock %}

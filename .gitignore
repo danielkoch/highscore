@@ -1,0 +1,16 @@
+# System
+.DS_Store
+
+# IDE
+.project
+.idea/
+atlassian-ide-plugin.xml
+
+# Application
+/web/bundles/
+/app/database.sqlite
+/app/bootstrap*
+/app/cache/*
+/app/logs/*
+/vendor/
+/app/config/parameters.ini.dist
