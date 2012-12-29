@@ -3,14 +3,14 @@
 
 # IDE
 .project
-.idea/
+.idea
 atlassian-ide-plugin.xml
 
 # Application
+composer.phar
 /web/bundles/
 /app/database.sqlite
 /app/bootstrap*
 /app/cache/*
 /app/logs/*
-/vendor/
-/app/config/parameters.ini.dist
+/vendor/*
