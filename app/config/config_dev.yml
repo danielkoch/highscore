@@ -19,7 +19,7 @@ assetic:
     debug: false
 
 terrific_composer:
-    toolbar: true
+    toolbar: false
 
 terrific_core:
     copy_images: true
