@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Terrific\Module\Dummy;
+namespace Terrific\Module\Score;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class TerrificModuleDummy extends Bundle
+class TerrificModuleScore extends Bundle
 {
 }

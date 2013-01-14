@@ -1,5 +1,4 @@
-/* @group Module: Dummy */
-
+/* @group module: default */
 @media all {
 
 }
@@ -9,7 +8,7 @@
 }
 
 @media screen {
-    .modDummy {
+    .mod-default {
 
     }
 }
